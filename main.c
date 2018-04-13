@@ -6,6 +6,19 @@
 
 void cmd_handle();
 
+void clear_only()
+{
+	char clear_o[10];
+
+	#ifdef win
+		strcpy(clear_o, "cls");
+	#else
+		strcpy(clear_o, "clear");
+	#endif
+
+    system(clear_o);
+}
+
 void prompt_reset()
 {
 	char cwd[1024];
@@ -15,7 +28,7 @@ void prompt_reset()
 	}
    	else
 	{
-    	perror("Impossible de get le wo dir");
+    	puts("Impossible de get le wo dir");
 	}
 
 	char clear[6];
@@ -27,7 +40,7 @@ void prompt_reset()
 	#endif
 
     system(clear);
-	printf("%s %s", cwd,"=> ");
+	printf("\x1b[32m%s \x1b[31m%s \x1b[0m%s", cwd, "=>", "");
 
 	cmd_handle();
 }
@@ -41,13 +54,15 @@ void prompt_back()
 	}
    	else
 	{
-    	perror("Impossible de get le wo dir");
+    	puts("Impossible de get le wo dir");
 	}
 
 	printf("%s\n", "");
-	printf("%s %s", cwd, "=> ");
+	printf("\x1b[32m%s \x1b[31m%s \x1b[0m%s", cwd, "=>", "");
 	cmd_handle();
 }
+
+void calc();
 
 void cmd_handle()
 {	
@@ -191,6 +206,29 @@ void cmd_handle()
 
 		prompt_back();
 	}
+	else if (strcmp(cmd, "l") == 0)
+	{
+		#ifdef win
+			//todo
+		#else
+			system("ls -lah");
+			prompt_back();
+		#endif
+	}
+	else if (strcmp(cmd, "ifconfig") == 0)
+	{
+		#ifdef win
+			system("ipconfig");
+		#else
+			system("ifconfig");
+		#endif
+		
+		prompt_back();
+	}
+	else if (strcmp(cmd, "calc") == 0)
+	{
+		calc();
+	}
 	else if (strcmp(cmd, "clear") == 0)
 	{
 		prompt_reset();
@@ -203,6 +241,99 @@ void cmd_handle()
 	else
 	{
 		printf("%s\n", "Nope");
+		prompt_back();
+	}
+}
+
+#define LIGNES 64
+
+void calc()
+{	
+	clear_only();
+
+	for (int ii = 0; ii < 65; ii++)
+    {
+        printf("%s", "-");
+    }
+
+	printf("%s\n", " ");
+	printf("%s\n", "| [1] + / - / x / ÷ | [2] Add |                                 |");
+	printf("%s\n", "| [01] Pour fermer				                |");///////////////
+
+	for (int iii = 0; iii < 65; iii++)
+    {
+        printf("%s", "-");
+    }
+
+	printf("%s\n", " ");
+    printf("%s", "=> ");
+	int x;
+	scanf("%d", &x);
+
+	if (x == 1)
+	{
+		printf("%s", "NBR 1 ? -> ");
+        double n;
+        scanf("%lf", &n);
+        printf("%s", "NBR 2 ? -> ");
+        double nn;
+        scanf("%lf", &nn);
+        printf("%s", "Operation (+, -, x, /) ? -> ");
+        char ope[2];
+        scanf("%s", ope);
+
+        if ((strcmp(ope, "+") == 0))
+        {
+            double o = n + nn;
+            printf("%s %lf", "Result :", o);
+        }
+        else if ((strcmp(ope, "-") == 0))
+        {
+            double o = n - nn;
+            printf("%s %lf", "Result :", o);
+        }
+        else if ((strcmp(ope, "x") == 0))
+        {
+            double o = n * nn;
+            printf("%s %lf", "Result :", o);
+        }
+        else if ((strcmp(ope, "-") == 0))
+        {
+            double o = (double)n / (double)nn;
+            printf("%s %lf", "Result :", o);
+        }
+
+        printf("%s\n", "");
+
+        getchar();
+        getchar();
+
+        calc();
+	}
+    else if (x == 2)
+    {
+        printf("%s\n", "Entrez tous les nombres à ajouter, puis tapez 0 pour faire le calcul");
+        
+        int z = 1;
+        while (z != 0)
+        {
+            int e;
+            printf("%s", "->");
+            int f;
+            scanf("%lf", &f);
+            if (f != 0)
+            {
+                e = e + f;
+            }
+            else
+            {
+                z = f;
+            }
+        }
+    }
+	else if (x == 01)
+	{
+		prompt_back();
 	}
 }
 
