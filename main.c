@@ -333,15 +333,25 @@ void calc()
     {
         printf("%s\n", "Entrez tous les nombres à ajouter, puis tapez 0 pour faire le calcul");
         
-        int z;
-        int e;
-        for (int c; c <= 10; c++)
+        double z;
+        double e;
+
+        while (1)
         {
+            st:
             printf("%s", "-> ");
             scanf("%lf", &z);
-            e = e + z;
+            if (z != 0)
+            {
+                e = e + z;
+                goto st;
+            }
+            else
+            {
+                printf("%s %lf\n", "Total : ", e);
+                break;
+            }
         }
-        printf("%s %lf\n", "Total : ", e);
 
         getchar();
         getchar();
