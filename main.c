@@ -3,7 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
-//#include <conio.h>
 
 void cmd_handle();
 
@@ -143,7 +142,7 @@ void cmd_handle()
                 printf("%s", "-> ");
                 
                 char name[100];
-                scanf("%s", nincludeame);
+                scanf("%s", name);
 
                 char rm[120] = "rmdir /s ";
                 strcat(rm, name);
