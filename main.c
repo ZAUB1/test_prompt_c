@@ -6,6 +6,8 @@
 #include "calc.h"
 #include "actions.h"
 #include "main.h"
+#include "note.h"
+#include "cat.h"
 
 void cmd_handle();
 void calc();
@@ -175,6 +177,14 @@ void cmd_handle()
     {
         calc();
     }
+    else if (strcmp(cmd, "note") == 0)
+    {
+        note();
+    }
+    else if (strcmp(cmd, "cat") == 0)
+    {
+        cat();
+    }
     else if (strcmp(cmd, "help") == 0)
     {
         printf("%s\n", "--ZAUB1 Shell--");
@@ -192,6 +202,7 @@ void cmd_handle()
         printf("%s\n", "• rm : Allows to remove any file or directory");
         printf("%s\n", "• calc : Displays a calculator within the terminal");
         printf("%s\n", "• help : Shows this page");
+        printf("%s\n", "• note : Little note system that write in a file");
         prompt_back();
     }
     else if (strcmp(cmd, "clear") == 0)

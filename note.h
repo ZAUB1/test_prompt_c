@@ -1,0 +1,1 @@
+void note(void);
