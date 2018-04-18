@@ -8,6 +8,8 @@
 #include "main.h"
 #include "note.h"
 #include "cat.h"
+#include "ls.h"
+#include "touch.h"
 
 void cmd_handle();
 void calc();
@@ -19,7 +21,7 @@ void cmd_handle()
 
     if (strcmp(cmd, "ls") == 0)
     {
-        char ls[6];
+        /*char ls[6];
 
         #ifdef win
             strcpy(ls, "dir");
@@ -29,7 +31,9 @@ void cmd_handle()
 
         system(ls);
 
-        prompt_back();
+        prompt_back();*/
+
+        ls();
     }
     else if (strcmp(cmd, "ping") == 0)
     {
@@ -156,12 +160,13 @@ void cmd_handle()
     }
     else if (strcmp(cmd, "l") == 0)
     {
-        #ifdef win
+        /*#ifdef win
             //todo
         #else
             system("ls -lah");
             prompt_back();
-        #endif
+        #endif*/
+        lah();
     }
     else if (strcmp(cmd, "ifconfig") == 0)
     {
@@ -184,6 +189,10 @@ void cmd_handle()
     else if (strcmp(cmd, "cat") == 0)
     {
         cat();
+    }
+    else if (strcmp(cmd, "touch") == 0)
+    {
+        touch();
     }
     else if (strcmp(cmd, "help") == 0)
     {
@@ -221,9 +230,32 @@ void cmd_handle()
     }
 }
 
+/*void keys()
+{
+    int ch2;
+    while (1)
+    {
+
+        ch2 = getc(stdin);
+        printf("%c", ch2);
+        switch(ch2)
+        {
+            case 72: printf("UP WAS PRESSED\n");
+            case 80: printf("DOWN WAS PRESSED\n");
+            case 75: printf("LEFT WAS PRESSED\n");
+            case 77: printf("RIGHT WAS PRESSED\n");
+
+            default:
+            printf("SOME OTHER KEY PRESSED: %d\n", ch2);
+        }
+    }
+}*/
+
 int main()
 {
     prompt_reset();
 
     cmd_handle();
+
+    //keys();
 }

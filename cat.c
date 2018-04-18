@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <wchar.h>
 #include "cat.h"
 #include "actions.h"
 

@@ -1,0 +1,2 @@
+void ls();
+void lah();
