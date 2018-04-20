@@ -10,6 +10,7 @@
 #include "cat.h"
 #include "ls.h"
 #include "touch.h"
+#include "mkdir.h"
 
 void cmd_handle();
 void calc();
@@ -68,18 +69,19 @@ void cmd_handle()
             char name[100];
             scanf("%s", name);
 
-            char rm[120] = "rm ";
+            char rm[120] = "";
             strcat(rm, name);
 
             printf("%s %s %s\n", "Etes vous sur de vouloir supprimer le fichier", name, "?");
-            printf("%s", "Y/N -> ");
+            printf("\x1b[32m%s\x1b[0m%s\x1b[31m%s \x1b[0m%s", "Y", "/", "N", "-> ");
 
             char choice[5];
             scanf("%s", choice);
 
             if (strcmp(choice, "Y") == 0 || strcmp(choice, "y") == 0)
             {
-                system(rm);
+                //system(rm);
+                remove(rm);
                 prompt_back();
             }
             else if (strcmp(choice, "N") == 0 || strcmp(choice, "n") == 0)
@@ -121,7 +123,7 @@ void cmd_handle()
                 char name[100];
                 scanf("%s", name);
 
-                char rm[120] = "rm -r ";
+                char rm[120] = "";
                 strcat(rm, name);
 
                 printf("%s %s %s\n", "Etes vous sur de vouloir supprimer le dossier", name, "?");
@@ -132,7 +134,8 @@ void cmd_handle()
 
                 if (strcmp(choice, "Y") == 0 || strcmp(choice, "y") == 0)
                 {
-                    system(rm);
+                    //system(rm);
+                    rmdir(rm);
                     prompt_back();
                 }
                 else if (strcmp(choice, "N") == 0 || strcmp(choice, "n") == 0)
@@ -193,6 +196,10 @@ void cmd_handle()
     else if (strcmp(cmd, "touch") == 0)
     {
         touch();
+    }
+    else if (strcmp(cmd, "mkdir") == 0)
+    {
+        mkdir_o();
     }
     else if (strcmp(cmd, "help") == 0)
     {

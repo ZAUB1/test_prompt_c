@@ -1,0 +1,1 @@
+void mkdir_o();
