@@ -23,12 +23,19 @@ void note(void)
     for(t = 0; t < MAX; t++) 
     {
         printf("%d: ", t);
-        gets(text[t]);
+        //gets(text[t]);
+	fgets(text[t], sizeof(text[t]), stdin);
 
-        if(!*text[t])
-        {
-            break;
-        }
+        //if(!*text[t])
+        //{
+        //    break;
+        //}
+	//int z = strlen(text[t]);
+	//printf("%d\n", z);
+	if (strlen(text[t]) == 1)
+	{
+		break;
+	}
     }
 
     printf("%s\n", "Entrez le nom du fichier : ");

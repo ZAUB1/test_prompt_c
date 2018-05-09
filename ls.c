@@ -212,7 +212,7 @@ void lah()
         }
         else
         {
-            printf("%d o | %s\n", st.st_size, namelist[n]->d_name);
+            printf("%ld o | %s\n", st.st_size, namelist[n]->d_name);
         }
 
         free(namelist[n]);
