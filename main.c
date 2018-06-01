@@ -17,10 +17,14 @@ void calc();
 
 void cmd_handle()
 {	
-    char cmd[30];
-    scanf("%s", cmd);
+    //char cmd[30];
+    //int chk = scanf("%s", cmd);
+    
+    char* cmd = NULL;
+    size_t len = 0;
+    getline(&cmd, &len, stdin);
 
-    if (strcmp(cmd, "ls") == 0)
+    if (strcmp(cmd, "ls\n") == 0)
     {
         /*char ls[6];
 
@@ -36,7 +40,7 @@ void cmd_handle()
 
         ls();
     }
-    else if (strcmp(cmd, "ping") == 0)
+    else if (strcmp(cmd, "ping\n") == 0)
     {
         printf("%s\n", "C'est partit pour le DDOS");
         printf("%s\n", "Args : ?");
@@ -52,7 +56,7 @@ void cmd_handle()
 
         prompt_back();
     }
-    else if (strcmp(cmd, "rm") == 0)
+    else if (strcmp(cmd, "rm\n") == 0)
     {
         printf("%s\n", "");
         printf("%s\n", "| NORMAL = 0 | R = 1 |");
@@ -145,7 +149,7 @@ void cmd_handle()
             #endif
         }
     }
-    else if (strcmp(cmd, "cd") == 0)
+    else if (strcmp(cmd, "cd\n") == 0)
     {
         printf("%s\n", "Where to go ? ");
         printf("%s", "-> ");
@@ -161,7 +165,7 @@ void cmd_handle()
 
         prompt_back();
     }
-    else if (strcmp(cmd, "l") == 0)
+    else if (strcmp(cmd, "l\n") == 0)
     {
         /*#ifdef win
             //todo
@@ -171,7 +175,7 @@ void cmd_handle()
         #endif*/
         lah();
     }
-    else if (strcmp(cmd, "ifconfig") == 0)
+    else if (strcmp(cmd, "ifconfig\n") == 0)
     {
         #ifdef win
             system("ipconfig");
@@ -181,27 +185,27 @@ void cmd_handle()
         
         prompt_back();
     }
-    else if (strcmp(cmd, "calc") == 0)
+    else if (strcmp(cmd, "calc\n") == 0)
     {
         calc();
     }
-    else if (strcmp(cmd, "note") == 0)
+    else if (strcmp(cmd, "note\n") == 0)
     {
         note();
     }
-    else if (strcmp(cmd, "cat") == 0)
+    else if (strcmp(cmd, "cat\n") == 0)
     {
         cat();
     }
-    else if (strcmp(cmd, "touch") == 0)
+    else if (strcmp(cmd, "touch\n") == 0)
     {
         touch();
     }
-    else if (strcmp(cmd, "mkdir") == 0)
+    else if (strcmp(cmd, "mkdir\n") == 0)
     {
         mkdir_o();
     }
-    else if (strcmp(cmd, "help") == 0)
+    else if (strcmp(cmd, "help\n") == 0)
     {
         printf("%s\n", "--ZAUB1 Shell--");
         printf("%s\n", "");
@@ -221,14 +225,18 @@ void cmd_handle()
         printf("%s\n", "• note : Little note system that write in a file");
         prompt_back();
     }
-    else if (strcmp(cmd, "clear") == 0)
+    else if (strcmp(cmd, "clear\n") == 0)
     {
         prompt_reset();
     }
-    else if (strcmp(cmd, "exit") == 0)
+    else if (strcmp(cmd, "exit\n") == 0)
     {
         printf("%s\n", "++");
         exit(0);
+    }
+    else if (strcmp(cmd, "\n\0") == 0)
+    {
+        prompt_back();
     }
     else
     {
