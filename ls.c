@@ -148,53 +148,47 @@ void lah()
 
         char *mon;
 
-        if (foo->tm_mon == 0)
+        switch(foo->tm_mon)
         {
-            mon = "Jan";
-        }
-        else if (foo->tm_mon == 1)
-        {
-            mon = "Feb";
-        }
-        else if (foo->tm_mon == 2)
-        {
-            mon = "Mar";
-        }
-        else if (foo->tm_mon == 3)
-        {
-            mon = "Apr";
-        }
-        else if (foo->tm_mon == 4)
-        {
-            mon = "May";
-        }
-        else if (foo->tm_mon == 5)
-        {
-            mon = "Jun";
-        }
-        else if (foo->tm_mon == 6)
-        {
-            mon = "Jul";
-        }
-        else if (foo->tm_mon == 7)
-        {
-            mon = "Aug";
-        }
-        else if (foo->tm_mon == 8)
-        {
-            mon = "Sep";
-        }
-        else if (foo->tm_mon == 9)
-        {
-            mon = "Oct";
-        }
-        else if (foo->tm_mon == 10)
-        {
-            mon = "Nov";
-        }
-        else if (foo->tm_mon == 11)
-        {
-            mon = "Dec";
+            case 0:
+                mon = "Jan";
+                break;
+            case 1:
+                mon = "Feb";
+                break;
+            case 2:
+                mon = "Mar";
+                break;
+            case 3:
+                mon = "Apr";
+                break;
+            case 4:
+                mon = "May";
+                break;
+            case 5:
+                mon = "Jun";
+                break;
+            case 6:
+                mon = "Jul";
+                break;
+            case 7:
+                mon = "Aug";
+                break;
+            case 8:
+                mon = "Sep";
+                break;
+            case 9:
+                mon = "Oct";
+                break;
+            case 10:
+                mon = "Nov";
+                break;
+            case 11:
+                mon = "Dec";
+                break;
+
+            default:
+                mon = "Vous etes sattelise";
         }
 
         printf("| %d/%s - %d:%d |%s", foo->tm_mday, mon , foo->tm_hour, foo->tm_min," ");
